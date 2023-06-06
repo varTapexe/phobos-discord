@@ -10,26 +10,6 @@ module.exports = {
 
 client.on('messageCreate', async (message) => {
   
-  if (message.channel.id === "912927667869843466") {
-    const faqKeywords = {
-    "ValueError: C:\\Program Files (x86)\\Steam\\steamapps\\common\\Wizard101\\Data\\GameData\\root.wad not found.": `**Looks like you have a common error!**\n  1. Right click your Wizard101 icon.\n  2. Click properties.\n  3. Copy the text in the \`Start in:\` box.\n  4. Paste it into your Deimos config file into the \`wiz-path=\` line.\n  5. Save the file, and run Deimos again! `,
-    'relog path': "```py\nmass sendkey ESC, .01\nsleep 2\nmass clickwindow ['WorldView', 'DeckConfiguration', 'SettingPage', 'QuitButton']\nsleep 2\nmass clickwindow ['WorldView', 'DeckConfiguration', 'SettingPage', 'QuitButton']\nsleep 2\nmass sendkey ENTER, 0.1\nmass waitforpath ['WorldView', 'mainWindow']\nsleep 2\nmass clickwindow ['WorldView', 'mainWindow', 'btnPlay']```",
-  // Add more keywords and answers as needed
-  };
-
-  const words_in_msg = message.content.trim().split(/ +/g);
-
-  const foundKeywords = Object.keys(faqKeywords).filter(keyword => searchQuery.includes(keyword.toLowerCase()));
-  
-    if (foundKeywords.length > 0) {
-      // Send the answer for the first found keyword
-      const answer = faqKeywords[foundKeywords[0]];
-      message.channel.send(answer);
-    } else {
-      return
-    }
-  
-  }
   if (message.author.bot) return;
     if (message.channel.type === 1) {
         var dmEmbed = new EmbedBuilder()
@@ -40,6 +20,33 @@ client.on('messageCreate', async (message) => {
     return message.author.send({embeds: [dmEmbed]})
   }
   if (message.channel.type !== 0) return;
+
+   if (message.channel.id === "912927667869843466") {
+    const faqKeywords = {
+    "valueerror: C:\\Program Files (x86)\\Steam\\steamapps\\common\\Wizard101\\Data\\GameData\\root.wad not found.": `**Looks like you have a common error!**\n  1. Right click your Wizard101 icon.\n  2. Click properties.\n  3. Copy the text in the \`Start in:\` box.\n  4. Paste it into your Deimos config file into the \`wiz-path=\` line.\n  5. Save the file, and run Deimos again! `,
+    'relog path': "```py\nmass sendkey ESC, .01\nsleep 2\nmass clickwindow ['WorldView', 'DeckConfiguration', 'SettingPage', 'QuitButton']\nsleep 2\nmass clickwindow ['WorldView', 'DeckConfiguration', 'SettingPage', 'QuitButton']\nsleep 2\nmass sendkey ENTER, 0.1\nmass waitforpath ['WorldView', 'mainWindow']\nsleep 2\nmass clickwindow ['WorldView', 'mainWindow', 'btnPlay']```",
+  // Add more keywords and answers as needed
+  };
+
+  const words_in_msg = message.content.trim().split(/ +/g);
+  const searchQuery = words_in_msg.join(" ").toLowerCase()
+
+    var faqEmbed = new EmbedBuilder()
+          .setFooter({ text: message.author.tag, iconURL: message.author.displayAvatarURL() })
+          .setColor('#8800ff')
+
+  const foundKeywords = Object.keys(faqKeywords).filter(keyword => searchQuery.includes(keyword.toLowerCase()));
+  
+    if (foundKeywords.length > 0) {
+      // Send the answer for the first found keyword
+      const answer = faqKeywords[foundKeywords[0]];
+      faqEmbed.setDescription(answer)
+      message.channel.send({ embeds: [ faqEmbed ]});
+    } else {
+      return
+    }
+  
+  }
 
   const prefix = await db.get(`guild_prefix_${message.guild.id}`) || config.Prefix || "?";
 
