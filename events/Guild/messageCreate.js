@@ -23,8 +23,13 @@ client.on('messageCreate', async (message) => {
 
    if (message.channel.id === "912927667869843466") {
     const faqKeywords = {
-    "valueerror: C:\\Program Files (x86)\\Steam\\steamapps\\common\\Wizard101\\Data\\GameData\\root.wad not found.": `**Looks like you have a common error!**\n  1. Right click your Wizard101 icon.\n  2. Click properties.\n  3. Copy the text in the \`Start in:\` box.\n  4. Paste it into your Deimos config file into the \`wiz-path=\` line.\n  5. Save the file, and run Deimos again! `,
-    'relog path': "```py\nmass sendkey ESC, .01\nsleep 2\nmass clickwindow ['WorldView', 'DeckConfiguration', 'SettingPage', 'QuitButton']\nsleep 2\nmass clickwindow ['WorldView', 'DeckConfiguration', 'SettingPage', 'QuitButton']\nsleep 2\nmass sendkey ENTER, 0.1\nmass waitforpath ['WorldView', 'mainWindow']\nsleep 2\nmass clickwindow ['WorldView', 'mainWindow', 'btnPlay']```",
+    "root.wad not found": `**Looks like you have a common error!**\n1. Right click your Wizard101 icon.\n2. Click properties.\n3. Copy the text in the \`Start in:\` box.\n4. Paste it into your Deimos config file into the \`wiz-path=\` line.\n5. Save the file, and run Deimos again! `,
+    'relog path': "**Here is the relog path for Deimos bots!**```py\nmass sendkey ESC, .01\nsleep 2\nmass clickwindow ['WorldView', 'DeckConfiguration', 'SettingPage', 'QuitButton']\nsleep 2\nmass clickwindow ['WorldView', 'DeckConfiguration', 'SettingPage', 'QuitButton']\nsleep 2\nmass sendkey ENTER, 0.1\nmass waitforpath ['WorldView', 'mainWindow']\nsleep 2\nmass clickwindow ['WorldView', 'mainWindow', 'btnPlay']```",
+      "with modifers 16384 already registered": `**Ah! I see what's happening.** 
+      Looks like another program is using that keybind! Try changing it in your Deimos config file, or changing the keybind on the other program!
+      
+      [Deimos keybind keycodes](https://discord.com/channels/912917467792281600/916500910392365066/916505216516501576)`,
+  "wizwalker.errors.PatternFailed": "**Try relaunching Wizard101 then opening Deimos again!**\nThis error most often occurs when an instance of wizwalker is already hooked to your client."
   // Add more keywords and answers as needed
   };
 
@@ -37,7 +42,7 @@ client.on('messageCreate', async (message) => {
 
   const foundKeywords = Object.keys(faqKeywords).filter(keyword => searchQuery.includes(keyword.toLowerCase()));
   
-    if (foundKeywords.length > 0) {
+    if (foundKeywords.length > 0 && searchQuery.length > 10) {
       // Send the answer for the first found keyword
       const answer = faqKeywords[foundKeywords[0]];
       faqEmbed.setDescription(answer)
