@@ -1,0 +1,11 @@
+{
+      "root.wad not found": "**Looks like you have a common error!**\n1. Right click your Wizard101 icon.\n2. Click properties.\n3. Copy the text in the `Start in:` box **without the quotation marks**.\n4. Paste it into your Deimos config file into the `wiz-path=` line.\n5. Save the file, and run Deimos again! ",
+      "relog path": "**Here is the relog path for Deimos bots!**```py\nmass sendkey ESC, .01\nsleep 2\nmass clickwindow ['WorldView', 'DeckConfiguration', 'SettingPage', 'QuitButton']\nsleep 2\nmass clickwindow ['WorldView', 'DeckConfiguration', 'SettingPage', 'QuitButton']\nsleep 2\nmass sendkey ENTER, 0.1\nmass waitforpath ['WorldView', 'mainWindow']\nsleep 2\nmass clickwindow ['WorldView', 'mainWindow', 'btnPlay']```",
+      "with modifers 16384 already registered": "**Ah! I see what's happening.**\nLooks like another program is using that keybind! Try changing it in your Deimos config file, or changing the keybind on the other program!\n\n[Deimos keybind keycodes](https://discord.com/channels/912917467792281600/916500910392365066/916505216516501576)",
+      "KeyError:": 
+    "**Looks like your Deimos-config*.ini* file is messed up!**\nMake sure all keybinds are from the list of [Deimos keybind keycodes](https://discord.com/channels/912917467792281600/916500910392365066/916505216516501576)!",
+      "wizwalker.errors.PatternFailed": "**Try relaunching Wizard101 then opening Deimos again!**\nThis error most often occurs when an instance of wizwalker is already hooked to your client.",
+      "deimos safe": "Deimos is **safe** and **open source!**\n\n__**REMEMBER: You accept full responsibility for using a cheat tool, regardless of known safety.**__",
+      "auto walk": "**Is your Wizard101 client stuck walking?**\nUnfortunately there's no easy fix for that right now besides __restarting Deimos__.\n\nRemember to close Deimos with the `kill` keybind to ensure everything closes properly! The default keybind is **F9**.",
+      "[Root]": "**Looks like you sent a UI tree!**\nIf you need help creating a path try using `!uitree`."
+}
