@@ -54,12 +54,14 @@ client.on('messageCreate', async (message) => {
               response.statusText,
             );
 
-          const text = await response.text();
+          var text = await response.text();
+          text = text.toLowerCase();
           const lines = text.split('\n');
           const lastLine = lines[lines.length - 1];
           const firstLine = lines[0];
           const foundKeywordsInLastLine = Object.keys(faqKeywords).filter(keyword => lastLine.includes(keyword.toLowerCase()));
           const foundKeywordsInFirstLine = Object.keys(faqKeywords).filter(keyword => firstLine.includes(keyword.toLowerCase()));
+          console.log(foundKeywordsInFirstLine)
           if (foundKeywordsInLastLine.length > 0) {
             // Send the answer for the first found keyword
             const answer = faqKeywords[foundKeywordsInLastLine[0]];
@@ -75,6 +77,10 @@ client.on('messageCreate', async (message) => {
           console.log(error);
         }
       }
+    }
+    else if (searchQuery.endsWith("?")) {
+      faqEmbed.setDescription("**I couldn't find a common answer to your question ☹️.**\n\nTry sending your most recent Deimos log (found in the `logs` folder) **if you're experiencing an error with Deimos.**")
+      message.channel.send({ embeds: [faqEmbed] });
     }
     else {
       return
