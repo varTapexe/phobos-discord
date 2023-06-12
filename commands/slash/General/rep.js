@@ -40,7 +40,7 @@ const reputation = {
     r[userId].repHistory[`${userGiving}`] = Date.now();
     db.set("rep", JSON.stringify(r));
   },
-  remove: async (userId, data) => {
+  remove: async (userId) => {
     const r = await db.getJSON("rep");
     userId = userId.toString()
     delete r[userId];
@@ -67,13 +67,25 @@ module.exports = {
     const allUserRep = await reputation.get();
     const user = interaction.options.get("user").value
 
-    console.log(allUserRep)
+    // console.log(allUserRep)
 
     if (user == interaction.member.id) {
       return interaction.reply({
         embeds: [
           new EmbedBuilder()
             .setDescription(`<@${interaction.member.id}>, you may not give reputation to yourself! ❌`)
+            .setColor('Red')
+        ],
+        ephemeral: true
+      })
+    } else if (user == '1115418231902048307') {
+      if (allUserRep[user]) {
+        await reputation.remove(user)
+      }
+      return interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setDescription(`<@${interaction.member.id}>, you may not give reputation to me! ❌`)
             .setColor('Red')
         ],
         ephemeral: true
@@ -111,9 +123,10 @@ module.exports = {
           rep: 0,
           repHistory: {} // rep history will be JSON obj like so: { "userId": dateTimeStamp }
         }).then(async () => {
-          await reputation.plusOne(user, interaction.member.id);
+          setTimeout(async () => {
+            await reputation.plusOne(user, interaction.member.id);
+          }, 1000) //wait a second to let database update
         })
-        const newRep = await reputation.get();
         return interaction.reply({
           embeds: [
             new EmbedBuilder()
