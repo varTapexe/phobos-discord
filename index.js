@@ -77,3 +77,8 @@ process.on('unhandledRejection', async (err, promise) => {
   console.error(`[ANTI-CRASH] Unhandled Rejection: ${err}`.red);
   console.error(promise);
 });
+
+// const Database = require("@replit/database");
+// const db = new Database()
+// db.delete("rep")
+

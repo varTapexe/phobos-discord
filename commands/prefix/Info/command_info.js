@@ -28,13 +28,21 @@ module.exports = {
       ]
     });
 
+    const getCommandOptions = () => {
+      let options = []
+      command.options.forEach(option => {
+        options.push(option.name)
+      })
+      return options
+    }
+
     return message.reply({
       embeds: [
         new EmbedBuilder()
           .setTitle(`Command Information: ${command.name.toUpperCase()}`)
           .addFields(
             { name: 'Description:', value: command.description || "No Description was provided." },
-            { name: 'Options:', value: command.options.join(",") ? codeBlock('txt', command.config.usage) : "No options." },
+            { name: 'Options:', value: command.options ? codeBlock('txt', getCommandOptions().join(", ")) : "No options." },
             // { name: 'Permissions:', value: command.permissions.join(", ") },
             { name: 'Developer only?', value: command.owner ? 'Yes' : 'No' }
           )
