@@ -61,11 +61,27 @@ module.exports = {
     const allUserRep = await reputation.get();
     const user = interaction.options.get("user").value
 
+    function emoji(rep) {
+      if (rep > 0 && rep < 10) {
+        return '👍';
+      } else if (rep > 10 && rep <= 25) {
+        return '⭐';
+      } else if (rep > 25 && rep <= 50) {
+        return '🌟';
+      } else if (rep > 50 && rep <= 250) {
+        return '🎉 They are insanely popular!';
+      } else if (rep > 250 && rep <= 1000) {
+        return '👁️👄👁️... That\'s a lot.';
+      } else {
+        return '😅';
+      }
+    }
+
     if (!!allUserRep[user]) {
         return interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setDescription(`<@${user}> has **${allUserRep[user].rep}**! 👍`)
+              .setDescription(`<@${user}> has **${allUserRep[user].rep}** reputation! ${emoji(allUserRep[user].rep)}`)
               .setColor('#8800ff')
           ],
           ephemeral: true
@@ -74,7 +90,7 @@ module.exports = {
       return interaction.reply({
           embeds: [
             new EmbedBuilder()
-              .setDescription(`<@${user}> has no reputation! 👎`)
+              .setDescription(`<@${user}> has no reputation! ${emoji(0)}`)
               .setColor('Red')
           ],
           ephemeral: true
