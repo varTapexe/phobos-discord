@@ -78,7 +78,7 @@ client.on('messageCreate', async (message) => {
         }
       }
     }
-    else if (searchQuery.endsWith("?")) {
+    else if (searchQuery.includes("?")) {
       faqEmbed.setDescription("**I couldn't find a common answer to your question ☹️.**\n\nTry sending your most recent Deimos log (found in the `logs` folder) **if you're experiencing an error with Deimos.**")
       message.channel.send({ embeds: [faqEmbed] });
     }
