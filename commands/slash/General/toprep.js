@@ -67,11 +67,18 @@ module.exports = {
     }, {});
 
     let leaderboard = ``
+    let left = 0
     Object.keys(sortedJsonOfJsons).forEach((id, index) => {
       if (index <= 9) {
         leaderboard += `${index + 1}. <@${id}>: \`${allUserRep[id].rep}\`\n`;
+      } else {
+        left ++
       }
     })
+
+    if (left > 0) {
+      leaderboard += `and ${left} more...`
+    }
 
     return interaction.reply({
       embeds: [
