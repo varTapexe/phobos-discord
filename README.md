@@ -1,5 +1,5 @@
 # Deimos Discord Support Bot "Phobos" - By [Tap](https://www.tapwater.dev): 
-*Hosted on ### [replit](https://replit.com/)*
+### *Hosted on [replit](https://replit.com/)*
 
 # How do I get support on this?
 
