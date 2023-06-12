@@ -4,7 +4,7 @@
 # How do I get support on this?
 
 I probably won't respond right away but you can join my [Discord server](https://discord.com/invite/49EZMGKx6p) and message me.
-- I will probably update this code every now and then so feel free to ⭐ **Star** the GitHub repo.
+- I only update the github for the bot every now and then, updates may be made to the bot that arent displayed in this repository.
 
 ## Credits
 - Ultimate314 (uitree command before conversion)
