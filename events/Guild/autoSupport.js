@@ -78,8 +78,8 @@ client.on('messageCreate', async (message) => {
         }
       }
     }
-    else if (searchQuery.includes("?")) {
-      faqEmbed.setDescription("**I couldn't find a common answer to your question ☹️.**\n\nTry sending your most recent Deimos log (found in the `logs` folder) **if you're experiencing an error with Deimos.**")
+    else if (searchQuery.includes("?") && searchQuery.includes("deimos") || searchQuery.includes("error")) {
+      faqEmbed.setDescription("**I could use some more context... 🤔**\n\nTry sending your most recent Deimos log **(found in the `logs` folder)** if you're experiencing an error with Deimos.")
       message.channel.send({ embeds: [faqEmbed] });
     }
     else {
